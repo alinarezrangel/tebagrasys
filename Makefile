@@ -17,7 +17,7 @@ CFLAGS=$(STD) $(WARN) $(OPT) -I$(INCDIR)
 # Linker flags
 LDFLAGS=$(LIBS)
 # Object files
-OBJC=main.o mousehandler.o
+OBJC=main.o mousehandler.o common.o geometry.o mousearea.o
 # C Compiler
 CC=gcc
 # C Linker
@@ -31,6 +31,15 @@ main.o: $(SRCDIR)/main.c
 
 mousehandler.o: $(SRCDIR)/mousehandler.c
 	$(CC) -o mousehandler.o -c $(SRCDIR)/mousehandler.c $(CFLAGS)
+
+common.o: $(SRCDIR)/common.c
+	$(CC) -o common.o -c $(SRCDIR)/common.c $(CFLAGS)
+
+geometry.o: $(SRCDIR)/geometry.c
+	$(CC) -o geometry.o -c $(SRCDIR)/geometry.c $(CFLAGS)
+
+mousearea.o: $(SRCDIR)/mousearea.c
+	$(CC) -o mousearea.o -c $(SRCDIR)/mousearea.c $(CFLAGS)
 
 clean:
 	rm *.o $(TARGET)

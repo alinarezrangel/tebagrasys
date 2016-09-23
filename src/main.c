@@ -5,6 +5,7 @@
 #include <gpm.h>
 
 #include "mousehandler.h"
+#include "geometry.h"
 
 int lastX = 0;
 int lastY = 0;

@@ -9,7 +9,7 @@
 tebagrasys_mouse_event_t* tebagrasys_gpm_event_to_native_event(Gpm_Event* event)
 {
 	tebagrasys_mouse_event_t* evt =
-		(tebagrasys_mouse_event_t*)malloc(sizeof(tebagrasys_mouse_event_t));
+		(tebagrasys_mouse_event_t*)tebagrasys_malloc(sizeof(tebagrasys_mouse_event_t));
 	if(evt == NULL)
 		return NULL;
 	evt->x = event->x;

@@ -51,7 +51,7 @@ typedef struct
 
 /**
 * @brief Converts a Gpm_Event to a tebagrasys_mouse_event_t.
-* The resulting event should be deallocated using free.
+* The resulting event should be deallocated using tebagrasys_dealloc.
 */
 tebagrasys_mouse_event_t* tebagrasys_gpm_event_to_native_event(Gpm_Event* event);
 

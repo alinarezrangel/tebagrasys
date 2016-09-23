@@ -49,6 +49,12 @@ typedef uint32_t tebagrasys_error_t;
 
 typedef uint64_t tebagrasys_screen_size_t;
 
+typedef void* tebagrasys_pointer_t;
+
+tebagrasys_pointer_t tebagrasys_malloc(size_t bts);
+tebagrasys_pointer_t tebagrasys_realloc(tebagrasys_pointer_t ptr, size_t ns);
+void tebagrasys_dealloc(tebagrasys_pointer_t ptr);
+
 TEBAGRASYS_DECLR_END
 
 #endif /* __TEBAGRASYS_LIB_COMMON_H__ */
