@@ -1,0 +1,22 @@
+	Building BASIC
+------------------
+
+Only type `make`:
+
+```
+make
+```
+
+For install, type `make install`:
+
+```
+make
+make help
+make install
+```
+
+For make the documentation, type `make help`:
+
+```
+make help
+```
