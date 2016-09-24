@@ -4,8 +4,9 @@
 
 #include <gpm.h>
 
-#include "mousehandler.h"
 #include "geometry.h"
+#include "mousehandler.h"
+#include "mousearea.h"
 
 int lastX = 0;
 int lastY = 0;
@@ -17,6 +18,7 @@ int MyMouseHandler(Gpm_Event* event, void* data)
 	char cursor = '^';
 	if(evt == NULL)
 		return 1;
+	tebagrasys_mouse_area_controller(evt, data);
 	printf("\033[%d;%dH ", lastY, lastX);
 	lastX = evt->x;
 	lastY = evt->y;
@@ -41,22 +43,40 @@ int MyMouseHandler(Gpm_Event* event, void* data)
 			cursor = '*';
 			break;
 	}
+	printf("\033[;HEvent on %d, %d", evt->x, evt->y);
 	printf("\033[%d;%dH%c", evt->y, evt->x, cursor);
 	fflush(stdout);
 	free(evt);
 	return 0;
 }
 
+tebagrasys_error_t MyAreaOnClickHandler(tebagrasys_mouse_event_t* ev)
+{
+	printf("\033[;HClicked in MyArea");
+	return EXIT_SUCCESS;
+}
+
 int main(int argc, char** argv)
 {
-	setlocale(LC_ALL, "");
-
 	Gpm_Connect conn;
 	int c = 0;
+	tebagrasys_mouse_area_t* area = tebagrasys_mouse_area_new(
+		tebagrasys_geometry_rectangle_new(
+			(tebagrasys_geometry_point_t){5, 5},
+			(tebagrasys_geometry_size_t){10, 10}
+		),
+		tebagrasys_geometry_rectangle_have
+	);
+
+	setlocale(LC_ALL, "");
+
 	conn.eventMask = ~0;
 	conn.defaultMask = 0;
 	conn.minMod = 0;
 	conn.maxMod = ~0;
+
+	area->onClick = MyAreaOnClickHandler;
+	area->haveOnClick = TRUE;
 
 	if(Gpm_Open(&conn, 0) < 0)
 	{
@@ -69,6 +89,7 @@ int main(int argc, char** argv)
 	while((c = Gpm_Getc(stdin)) != EOF)
 		printf("%c", c);
 
+	tebagrasys_mouse_area_dealloc(area);
 	Gpm_Close();
 	return EXIT_SUCCESS;
 }
