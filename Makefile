@@ -1,5 +1,7 @@
 # Build target
 TARGET=basicenv
+# Build target lib
+TARGETLIB=libtebagrasys.a
 # Directory with the source files
 SRCDIR=src
 # Directory with the header files
@@ -17,14 +19,21 @@ CFLAGS=$(STD) $(WARN) $(OPT) -I$(INCDIR)
 # Linker flags
 LDFLAGS=$(LIBS)
 # Object files
-OBJC=main.o mousehandler.o common.o geometry.o mousearea.o
+OBJC=mousehandler.o common.o geometry.o mousearea.o
+# Test
+TEST=main.o
 # C Compiler
 CC=gcc
 # C Linker
 LD=gcc
+# Library Maker
+AR=ar
+# AR options
+ARFLAGS=-cvq
 
-all: $(OBJC)
-	$(LD) $(OBJC) $(LDFLAGS) -o $(TARGET)
+all: $(OBJC) $(TEST)
+	$(AR) $(ARFLAGS) $(TARGETLIB) $(OBJC)
+	$(LD) $(TEST) $(TARGETLIB) $(LDFLAGS) -o $(TARGET)
 
 main.o: $(SRCDIR)/main.c
 	$(CC) -o main.o -c $(SRCDIR)/main.c $(CFLAGS)

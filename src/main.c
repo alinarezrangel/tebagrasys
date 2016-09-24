@@ -58,7 +58,7 @@ int MyMouseHandler(Gpm_Event* event, void* data)
 	printf("\033[;HEvent on %d, %d      ", evt->x, evt->y);
 	printf("\033[%d;%dH%c", evt->y, evt->x, cursor);
 	fflush(stdout);
-	free(evt);
+	tebagrasys_dealloc(evt);
 	return 0;
 }
 
@@ -75,7 +75,7 @@ int main(int argc, char** argv)
 	tebagrasys_mouse_area_t* area = tebagrasys_mouse_area_new(
 		tebagrasys_geometry_rectangle_new(
 			(tebagrasys_geometry_point_t){5, 5},
-			(tebagrasys_geometry_size_t){0, 0}
+			(tebagrasys_geometry_size_t){10, 10}
 		),
 		tebagrasys_geometry_rectangle_have
 	);
