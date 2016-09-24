@@ -7,6 +7,7 @@
 #include "geometry.h"
 #include "mousehandler.h"
 #include "mousearea.h"
+#include "gpmconvert.h"
 
 int lastX = 0;
 int lastY = 0;

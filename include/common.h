@@ -55,9 +55,9 @@ typedef uint8_t tebagrasys_bool_t;
 
 typedef uint32_t tebagrasys_error_t;
 
-typedef uint64_t tebagrasys_screen_size_t;
+typedef uint32_t tebagrasys_screen_size_t;
 
-typedef uint64_t tebagrasys_size_t;
+typedef uint32_t tebagrasys_size_t;
 
 typedef void* tebagrasys_pointer_t;
 
