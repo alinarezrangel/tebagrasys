@@ -1,5 +1,5 @@
 # Build target
-TARGET=basicenv
+TARGET=basicenv.out
 # Build target lib
 TARGETLIB=libtebagrasys.a
 # Directory with the source files
@@ -38,16 +38,16 @@ all: $(OBJC) $(TEST)
 main.o: $(SRCDIR)/main.c
 	$(CC) -o main.o -c $(SRCDIR)/main.c $(CFLAGS)
 
-mousehandler.o: $(SRCDIR)/mousehandler.c
+mousehandler.o: $(SRCDIR)/mousehandler.c $(INCDIR)/mousehandler.h
 	$(CC) -o mousehandler.o -c $(SRCDIR)/mousehandler.c $(CFLAGS)
 
-common.o: $(SRCDIR)/common.c
+common.o: $(SRCDIR)/common.c $(INCDIR)/common.h
 	$(CC) -o common.o -c $(SRCDIR)/common.c $(CFLAGS)
 
-geometry.o: $(SRCDIR)/geometry.c
+geometry.o: $(SRCDIR)/geometry.c $(INCDIR)/geometry.h
 	$(CC) -o geometry.o -c $(SRCDIR)/geometry.c $(CFLAGS)
 
-mousearea.o: $(SRCDIR)/mousearea.c
+mousearea.o: $(SRCDIR)/mousearea.c $(INCDIR)/mousearea.h
 	$(CC) -o mousearea.o -c $(SRCDIR)/mousearea.c $(CFLAGS)
 
 clean:
