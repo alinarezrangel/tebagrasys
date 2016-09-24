@@ -55,7 +55,7 @@ int MyMouseHandler(Gpm_Event* event, void* data)
 			cursor = '*';
 			break;
 	}
-	printf("\033[;HEvent on %d, %d      ", evt->x, evt->y);
+	printf("\033[;HEvent on %d, %d : %d          ", evt->x, evt->y, evt->type);
 	printf("\033[%d;%dH%c", evt->y, evt->x, cursor);
 	fflush(stdout);
 	tebagrasys_dealloc(evt);
@@ -96,6 +96,8 @@ int main(int argc, char** argv)
 		return EXIT_FAILURE;
 	}
 
+	printf("\033[2J\033[?25l");
+
 	gpm_handler = MyMouseHandler;
 
 	while((c = Gpm_Getc(stdin)) != EOF)
@@ -103,5 +105,8 @@ int main(int argc, char** argv)
 
 	tebagrasys_mouse_area_dealloc(area);
 	Gpm_Close();
+
+	printf("\033[2J\033[;H\033[?25h");
+
 	return EXIT_SUCCESS;
 }

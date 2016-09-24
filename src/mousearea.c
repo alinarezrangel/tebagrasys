@@ -22,7 +22,7 @@ tebagrasys_mouse_area_t* tebagrasys_mouse_area_new(
 	}
 #endif
 	tebagrasys_mouse_area_t* area =
-		(tebagrasys_mouse_area_t*)tebagrasys_malloc(
+		tebagrasys_malloc(
 			sizeof(tebagrasys_mouse_area_t)
 		);
 	if(area == NULL)
@@ -39,7 +39,7 @@ tebagrasys_mouse_area_t* tebagrasys_mouse_area_new(
 	area->haveOnUp = FALSE;
 	area->mouseIsIn = FALSE;
 	tebagrasys_mouse_area_list =
-		(tebagrasys_mouse_area_t**)tebagrasys_realloc(
+		tebagrasys_realloc(
 			tebagrasys_mouse_area_list,
 			sizeof(tebagrasys_mouse_area_t*) * tebagrasys_mouse_area_list_length
 		);
@@ -68,7 +68,7 @@ void tebagrasys_mouse_area_dealloc(tebagrasys_mouse_area_t* area)
 		*ar = *nx;
   }
 	tebagrasys_mouse_area_list =
-    (tebagrasys_mouse_area_t**)tebagrasys_realloc(
+    tebagrasys_realloc(
       tebagrasys_mouse_area_list,
       sizeof(tebagrasys_mouse_area_t*) * (--tebagrasys_mouse_area_list_length)
     );

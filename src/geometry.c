@@ -12,7 +12,7 @@ tebagrasys_geometry_rectangle_t* tebagrasys_geometry_rectangle_new(
 )
 {
 	tebagrasys_geometry_rectangle_t* rect =
-		(tebagrasys_geometry_rectangle_t*)tebagrasys_malloc(
+		tebagrasys_malloc(
 			sizeof(tebagrasys_geometry_rectangle_t)
 		);
 	if(rect == NULL)
@@ -28,7 +28,7 @@ tebagrasys_geometry_circle_t* tebagrasys_geometry_circle_new(
 )
 {
 	tebagrasys_geometry_circle_t* circ =
-		(tebagrasys_geometry_circle_t*)tebagrasys_malloc(
+		tebagrasys_malloc(
 			sizeof(tebagrasys_geometry_circle_t)
 		);
 	if(circ == NULL)

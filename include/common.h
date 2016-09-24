@@ -38,6 +38,14 @@
 #	define BOOL tebagrasys_bool_t
 #endif
 
+#if !defined(TEBAGRASYS_CAST_TO)
+#	if !defined(NOT_USE_CAST)
+#		define TEBAGRASYS_CAST_TO(x) (x)
+#	else
+#		define TEBAGRASYS_CAST_TO(x)
+#	endif
+#endif
+
 TEBAGRASYS_DECLR_BEGIN
 
 #if !defined(NOT_DECLARE_BOOL_T)
