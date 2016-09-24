@@ -42,6 +42,7 @@ int main(int argc, char** argv)
 	cursor = tebagrasys_cursor_new("@");
 
 	tebagrasys_mouse_area_attach(
+		area,
 		TEBAGRASYS_MOUSE_CLICK,
 		on_click
 	);

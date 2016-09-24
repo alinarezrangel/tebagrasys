@@ -75,6 +75,15 @@ tebagrasys_mouse_area_t* tebagrasys_mouse_area_new(
 */
 void tebagrasys_mouse_area_dealloc(tebagrasys_mouse_area_t* area);
 
+/**
+* @brief Attaches an event to an area.
+*/
+void tebagrasys_mouse_area_attach(
+	tebagrasys_mouse_area_t* area,
+	tebagrasys_mouse_event_enum_t eventtype,
+	tebagrasys_mouse_area_callback_t handler
+);
+
 int tebagrasys_mouse_area_controller(tebagrasys_mouse_event_t* e, void* dt);
 
 TEBAGRASYS_DECLR_END
