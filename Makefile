@@ -19,7 +19,7 @@ CFLAGS=$(STD) $(WARN) $(OPT) -I$(INCDIR)
 # Linker flags
 LDFLAGS=$(LIBS)
 # Object files
-OBJC=mousehandler.o common.o geometry.o mousearea.o
+OBJC=mousehandler.o common.o geometry.o mousearea.o gpmconvert.o
 # Test
 TEST=main.o
 # C Compiler
@@ -49,6 +49,9 @@ geometry.o: $(SRCDIR)/geometry.c $(INCDIR)/geometry.h
 
 mousearea.o: $(SRCDIR)/mousearea.c $(INCDIR)/mousearea.h
 	$(CC) -o mousearea.o -c $(SRCDIR)/mousearea.c $(CFLAGS)
+
+gpmconvert.o: $(SRCDIR)/gpmconvert.c $(INCDIR)/gpmconvert.h
+	$(CC) -o gpmconvert.o -c $(SRCDIR)/gpmconvert.c $(CFLAGS)
 
 clean:
 	rm *.o *.a $(TARGET) $(TARGETLIB)
