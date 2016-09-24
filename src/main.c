@@ -68,6 +68,18 @@ tebagrasys_error_t MyAreaOnClickHandler(tebagrasys_mouse_event_t* ev)
 	return EXIT_SUCCESS;
 }
 
+tebagrasys_error_t MyAreaOnHoverHandler(tebagrasys_mouse_event_t* ev)
+{
+	printf("\033[2;2HHovered in MyArea");
+	return EXIT_SUCCESS;
+}
+
+tebagrasys_error_t MyAreaOnLeaveHandler(tebagrasys_mouse_event_t* ev)
+{
+	printf("\033[2;2HLeaved from MyArea");
+	return EXIT_SUCCESS;
+}
+
 int main(int argc, char** argv)
 {
 	Gpm_Connect conn;
@@ -88,7 +100,11 @@ int main(int argc, char** argv)
 	conn.maxMod = ~0;
 
 	area->onClick = MyAreaOnClickHandler;
+	area->onHover = MyAreaOnHoverHandler;
+	area->onLeave = MyAreaOnLeaveHandler;
 	area->haveOnClick = TRUE;
+	area->haveOnHover = TRUE;
+	area->haveOnLeave = TRUE;
 
 	if(Gpm_Open(&conn, 0) < 0)
 	{
