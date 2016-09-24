@@ -4,10 +4,7 @@
 
 #include <gpm.h>
 
-#include "geometry.h"
-#include "mousehandler.h"
-#include "mousearea.h"
-#include "gpmconvert.h"
+#include "tebagrasys.h"
 
 int lastX = 0;
 int lastY = 0;
