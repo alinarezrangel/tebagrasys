@@ -37,6 +37,7 @@ tebagrasys_mouse_area_t* tebagrasys_mouse_area_new(
 	area->haveOnDragOver = FALSE;
 	area->haveOnDown = FALSE;
 	area->haveOnUp = FALSE;
+	area->mouseIsIn = FALSE;
 	tebagrasys_mouse_area_list =
 		(tebagrasys_mouse_area_t**)tebagrasys_realloc(
 			tebagrasys_mouse_area_list,
@@ -83,6 +84,11 @@ int tebagrasys_mouse_area_controller(tebagrasys_mouse_event_t* e, void *dt)
 		tebagrasys_mouse_area_t* area = tebagrasys_mouse_area_list[i];
 		if(area->havePoint(area->geometry, (tebagrasys_geometry_point_t){e->x, e->y}))
 		{
+			if((!area->mouseIsIn) && (area->haveOnHover))
+			{
+				area->onHover(e);
+				area->mouseIsIn = TRUE;
+			}
 			switch(e->type)
 			{
 				case TEBAGRASYS_MOUSE_MOVE:
@@ -112,6 +118,11 @@ int tebagrasys_mouse_area_controller(tebagrasys_mouse_event_t* e, void *dt)
             area->onDragOver(e);
           break;
 			}
+		}
+		else if((area->mouseIsIn) && (area->haveOnLeave))
+		{
+			area->onLeave(e);
+			area->mouseIsIn = FALSE;
 		}
 	}
 	return EXIT_SUCCESS;

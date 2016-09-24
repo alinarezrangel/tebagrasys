@@ -35,6 +35,7 @@ typedef struct
 	tebagrasys_pointer_t geometry;
 	tebagrasys_geometry_controller_havecbk_t havePoint;
 	tebagrasys_size_t index;
+	tebagrasys_bool_t mouseIsIn;
 
 	tebagrasys_mouse_area_callback_t onClick; // Click event
 	tebagrasys_mouse_area_callback_t onMove; // Move event

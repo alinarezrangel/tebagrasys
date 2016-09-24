@@ -18,8 +18,20 @@ int MyMouseHandler(Gpm_Event* event, void* data)
 	char cursor = '^';
 	if(evt == NULL)
 		return 1;
+	printf("\033[2;2H                   ");
 	tebagrasys_mouse_area_controller(evt, data);
 	printf("\033[%d;%dH ", lastY, lastX);
+	printf("\033[5;5H!!!!!!!!!!!");
+	printf("\033[6;5H!!!!!!!!!!!");
+	printf("\033[7;5H!!!!!!!!!!!");
+	printf("\033[8;5H!!!!!!!!!!!");
+	printf("\033[9;5H!!!!!!!!!!!");
+	printf("\033[10;5H!!!!!!!!!!!");
+	printf("\033[11;5H!!!!!!!!!!!");
+	printf("\033[12;5H!!!!!!!!!!!");
+	printf("\033[13;5H!!!!!!!!!!!");
+	printf("\033[14;5H!!!!!!!!!!!");
+	printf("\033[15;5H!!!!!!!!!!!");
 	lastX = evt->x;
 	lastY = evt->y;
 	switch(evt->type)
@@ -43,7 +55,7 @@ int MyMouseHandler(Gpm_Event* event, void* data)
 			cursor = '*';
 			break;
 	}
-	printf("\033[;HEvent on %d, %d", evt->x, evt->y);
+	printf("\033[;HEvent on %d, %d      ", evt->x, evt->y);
 	printf("\033[%d;%dH%c", evt->y, evt->x, cursor);
 	fflush(stdout);
 	free(evt);
@@ -52,7 +64,7 @@ int MyMouseHandler(Gpm_Event* event, void* data)
 
 tebagrasys_error_t MyAreaOnClickHandler(tebagrasys_mouse_event_t* ev)
 {
-	printf("\033[;HClicked in MyArea");
+	printf("\033[2;2HClicked in MyArea");
 	return EXIT_SUCCESS;
 }
 
@@ -63,7 +75,7 @@ int main(int argc, char** argv)
 	tebagrasys_mouse_area_t* area = tebagrasys_mouse_area_new(
 		tebagrasys_geometry_rectangle_new(
 			(tebagrasys_geometry_point_t){5, 5},
-			(tebagrasys_geometry_size_t){10, 10}
+			(tebagrasys_geometry_size_t){0, 0}
 		),
 		tebagrasys_geometry_rectangle_have
 	);

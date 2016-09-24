@@ -46,7 +46,7 @@ typedef struct
 	tebagrasys_mouse_event_enum_t type;
 	tebagrasys_screen_size_t x;
 	tebagrasys_screen_size_t y;
-	Gpm_Event* original;
+	tebagrasys_pointer_t original;
 } tebagrasys_mouse_event_t;
 
 /**
