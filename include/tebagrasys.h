@@ -11,12 +11,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>
-#include <gpm.h>
 
 #include "common.h"
 #include "mousehandler.h"
-#include "gpmconvert.h"
 #include "geometry.h"
 #include "mousearea.h"
+#include "cursor.h"
+#include "loop.h"
 
 #endif /* __TEBAGRASYS_LIB_H__ */

@@ -17,7 +17,8 @@ An simple example is:
 #include <stdio.h>
 #include <stdlib.h>
 #include <gpm.h>
-#include <tebagrasys.h>
+#include <tebagrasys/tebagrasys.h>
+#include <tebagrasys/gpm.h>
 
 tebagrasys_error_t on_click(tebagrasys_mouse_event_t* event)
 {
@@ -38,8 +39,11 @@ int main(int argc, char** argv)
 		),
 		tebagrasys_geometry_rectangle_have
 	);
-	loop = tebagrasys_main_loop_new();
 	cursor = tebagrasys_cursor_new("@");
+	loop = tebagrasys_main_loop_new(
+		cursor,
+		TEBAGRASYS_EXIT_ON_EOF
+	);
 
 	tebagrasys_mouse_area_attach(
 		area,
@@ -47,13 +51,10 @@ int main(int argc, char** argv)
 		on_click
 	);
 
-	tebagrasys_main_loop_exit_on(loop, TEBAGRASYS_EXIT_ON_EOF);
-
 	tebagrasys_main_loop_do_gpm(loop);
 
 	tebagrasys_mouse_area_dealloc(area);
 	tebagrasys_main_loop_dealloc(loop);
-	tebagrasys_cursor_dealloc(cursor);
 
 	return EXIT_SUCCESS;
 }

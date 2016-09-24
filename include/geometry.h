@@ -12,7 +12,6 @@
 #include <string.h>
 #include <stdint.h>
 #include <math.h>
-#include <gpm.h>
 
 #include "common.h"
 

@@ -12,7 +12,6 @@
 #include <string.h>
 #include <stdint.h>
 #include <errno.h>
-#include <gpm.h>
 
 #include "common.h"
 #include "mousehandler.h"
@@ -25,6 +24,9 @@ typedef
 		tebagrasys_mouse_event_t* e
 	);
 
+/**
+* @brief Represents a soft mouse area event.
+*/
 typedef enum
 {
 	TEBAGRASYS_EVENT_CLICK,

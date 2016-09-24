@@ -11,7 +11,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdint.h>
-#include <gpm.h>
 
 #include "common.h"
 

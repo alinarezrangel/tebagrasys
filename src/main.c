@@ -5,6 +5,7 @@
 #include <gpm.h>
 
 #include "tebagrasys.h"
+#include "gpmconvert.h"
 
 int lastX = 0;
 int lastY = 0;
