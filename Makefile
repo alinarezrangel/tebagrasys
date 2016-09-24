@@ -51,4 +51,4 @@ mousearea.o: $(SRCDIR)/mousearea.c $(INCDIR)/mousearea.h
 	$(CC) -o mousearea.o -c $(SRCDIR)/mousearea.c $(CFLAGS)
 
 clean:
-	rm *.o $(TARGET)
+	rm *.o *.a $(TARGET) $(TARGETLIB)
