@@ -37,6 +37,15 @@ typedef struct
 } tebagrasys_geometry_size_t;
 
 /**
+* @brief Callback for determinate if a point is inside a geometry.
+*/
+typedef
+  tebagrasys_bool_t (*tebagrasys_geometry_controller_havecbk_t)(
+    tebagrasys_pointer_t* geo,
+    tebagrasys_geometry_point_t pt
+  );
+
+/**
 * @brief Represents a rectangle in the screen.
 * Any type can inherit this struct.
 */

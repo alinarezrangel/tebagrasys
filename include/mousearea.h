@@ -22,7 +22,7 @@ TEBAGRASYS_DECLR_BEGIN
 
 typedef
 	tebagrasys_error_t (*tebagrasys_mouse_area_callback_t)(
-		tebagrasys_mouse_event_t*
+		tebagrasys_mouse_event_t* e
 	);
 
 /**
@@ -33,6 +33,8 @@ typedef
 typedef struct
 {
 	tebagrasys_pointer_t geometry;
+	tebagrasys_geometry_controller_havecbk_t havePoint;
+	tebagrasys_size_t index;
 
 	tebagrasys_mouse_area_callback_t onClick; // Click event
 	tebagrasys_mouse_area_callback_t onMove; // Move event
@@ -40,25 +42,39 @@ typedef struct
 	tebagrasys_mouse_area_callback_t onLeave; // Leave event
 	tebagrasys_mouse_area_callback_t onDrag; // Drag event
 	tebagrasys_mouse_area_callback_t onDragOver; // Drag over event
+	tebagrasys_mouse_area_callback_t onDown; // Down
+	tebagrasys_mouse_area_callback_t onUp; // Up
 	tebagrasys_bool_t haveOnClick;
 	tebagrasys_bool_t haveOnMove;
 	tebagrasys_bool_t haveOnHover;
 	tebagrasys_bool_t haveOnLeave;
 	tebagrasys_bool_t haveOnDrag;
 	tebagrasys_bool_t haveOnDragOver;
+	tebagrasys_bool_t haveOnDown;
+	tebagrasys_bool_t haveOnUp;
 } tebagrasys_mouse_area_t;
+
+
+extern tebagrasys_mouse_area_t** tebagrasys_mouse_area_list;
+extern tebagrasys_size_t tebagrasys_mouse_area_list_length;
 
 /**
 * @brief Creates a new mousearea.
 * The returned data should be deallocated using tebagrasys_mouse_area_dealloc.
 */
-tebagrasys_mouse_area_t* tebagrasys_mouse_area_new(tebagrasys_pointer_t geo);
+tebagrasys_mouse_area_t* tebagrasys_mouse_area_new(
+	tebagrasys_pointer_t geo,
+	tebagrasys_geometry_controller_havecbk_t cbk
+);
+
 /**
 * @brief Deallocates a mousearea.
 * If you allocate the same area before using this function,
 * the program will not note the difference.
 */
 void tebagrasys_mouse_area_dealloc(tebagrasys_mouse_area_t* area);
+
+int tebagrasys_mouse_area_controller(tebagrasys_mouse_event_t* e, void* dt);
 
 TEBAGRASYS_DECLR_END
 
