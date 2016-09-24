@@ -59,6 +59,8 @@ typedef uint32_t tebagrasys_screen_size_t;
 
 typedef uint32_t tebagrasys_size_t;
 
+typedef uint32_t tebagrasys_enum_t;
+
 typedef void* tebagrasys_pointer_t;
 
 tebagrasys_pointer_t tebagrasys_malloc(size_t bts);

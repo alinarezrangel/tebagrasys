@@ -97,12 +97,21 @@ int main(int argc, char** argv)
 	conn.minMod = 0;
 	conn.maxMod = ~0;
 
-	area->onClick = MyAreaOnClickHandler;
-	area->onHover = MyAreaOnHoverHandler;
-	area->onLeave = MyAreaOnLeaveHandler;
-	area->haveOnClick = TRUE;
-	area->haveOnHover = TRUE;
-	area->haveOnLeave = TRUE;
+	tebagrasys_mouse_area_attach(
+		area,
+		TEBAGRASYS_EVENT_CLICK,
+		MyAreaOnClickHandler
+	);
+	tebagrasys_mouse_area_attach(
+		area,
+		TEBAGRASYS_EVENT_HOVER,
+		MyAreaOnHoverHandler
+	);
+	tebagrasys_mouse_area_attach(
+		area,
+		TEBAGRASYS_EVENT_LEAVE,
+		MyAreaOnLeaveHandler
+	);
 
 	if(Gpm_Open(&conn, 0) < 0)
 	{

@@ -130,35 +130,43 @@ int tebagrasys_mouse_area_controller(tebagrasys_mouse_event_t* e, void *dt)
 
 void tebagrasys_mouse_area_attach(
 	tebagrasys_mouse_area_t* area,
-	tebagrasys_mouse_event_enum_t eventtype,
+	tebagrasys_mouse_area_event_enum_t eventtype,
 	tebagrasys_mouse_area_callback_t handler
 )
 {
 	switch(eventtype)
 	{
-		case TEBAGRASYS_MOUSE_MOVE:
+		case TEBAGRASYS_EVENT_MOVE:
 			area->haveOnMove = TRUE;
 			area->onMove = handler;
 			break;
-		case TEBAGRASYS_MOUSE_DOWN:
+		case TEBAGRASYS_EVENT_DOWN:
 			area->haveOnDown = TRUE;
 			area->onDown = handler;
 			break;
-		case TEBAGRASYS_MOUSE_CLICK:
+		case TEBAGRASYS_EVENT_CLICK:
 			area->haveOnClick = TRUE;
 			area->onClick = handler;
 			break;
-		case TEBAGRASYS_MOUSE_UP:
+		case TEBAGRASYS_EVENT_UP:
 			area->haveOnUp = TRUE;
 			area->onUp = handler;
 			break;
-		case TEBAGRASYS_DRAGGING:
+		case TEBAGRASYS_EVENT_DRAG:
 			area->haveOnDrag = TRUE;
 			area->onDrag = handler;
 			break;
-		case TEBAGRASYS_DRAG_END:
+		case TEBAGRASYS_EVENT_DRAG_OVER:
 			area->haveOnDragOver = TRUE;
 			area->onDragOver = handler;
+			break;
+		case TEBAGRASYS_EVENT_HOVER:
+			area->haveOnHover = TRUE;
+			area->onHover = handler;
+			break;
+		case TEBAGRASYS_EVENT_LEAVE:
+			area->haveOnLeave = TRUE;
+			area->onLeave = handler;
 			break;
 	}
 }

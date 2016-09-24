@@ -25,6 +25,18 @@ typedef
 		tebagrasys_mouse_event_t* e
 	);
 
+typedef enum
+{
+	TEBAGRASYS_EVENT_CLICK,
+	TEBAGRASYS_EVENT_DOWN,
+	TEBAGRASYS_EVENT_UP,
+	TEBAGRASYS_EVENT_HOVER,
+	TEBAGRASYS_EVENT_LEAVE,
+	TEBAGRASYS_EVENT_DRAG,
+	TEBAGRASYS_EVENT_DRAG_OVER,
+	TEBAGRASYS_EVENT_MOVE
+} tebagrasys_mouse_area_event_enum_t;
+
 /**
 * @brief Represents an area in the screen than is mouse sensible.
 * You can attach events to this area. For this works, need
@@ -80,7 +92,7 @@ void tebagrasys_mouse_area_dealloc(tebagrasys_mouse_area_t* area);
 */
 void tebagrasys_mouse_area_attach(
 	tebagrasys_mouse_area_t* area,
-	tebagrasys_mouse_event_enum_t eventtype,
+	tebagrasys_mouse_area_event_enum_t eventtype,
 	tebagrasys_mouse_area_callback_t handler
 );
 
