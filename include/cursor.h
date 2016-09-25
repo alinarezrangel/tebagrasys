@@ -27,7 +27,17 @@ typedef struct
 	tebagrasys_size_t byteSecLength;
 } tebagrasys_cursor_t;
 
+/**
+* @brief Creates a new cursor.
+* Can be deallocated using tebagrasys_cursor_dealloc.
+* bs is the cursor representation and can be NULL.
+*/
 tebagrasys_cursor_t* tebagrasys_cursor_new(const char* bs);
+
+/**
+* @brief Deallocates a cursor.
+*/
+void tebagrasys_cursor_dealloc(tebagrasys_cursor_t* cursor);
 
 TEBAGRASYS_DECLR_END
 
