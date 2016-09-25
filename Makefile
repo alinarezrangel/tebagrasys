@@ -11,15 +11,15 @@ WARN=-Wall
 # Optimization
 OPT=-O0
 # C Standard to use
-STD=-std=c11
+STD=-std=c99
 # Libraries
 LIBS=-lm -lgpm
 # Compiler flags
-CFLAGS=$(STD) $(WARN) $(OPT) -I$(INCDIR)
+CFLAGS=$(STD) $(WARN) $(OPT) -g -I$(INCDIR)
 # Linker flags
 LDFLAGS=$(LIBS)
 # Object files
-OBJC=mousehandler.o common.o geometry.o mousearea.o gpmconvert.o
+OBJC=mousehandler.o common.o geometry.o mousearea.o cursor.o loop.o gpmconvert.o gpmloop.o
 # Test
 TEST=main.o
 # C Compiler
@@ -52,6 +52,15 @@ mousearea.o: $(SRCDIR)/mousearea.c $(INCDIR)/mousearea.h
 
 gpmconvert.o: $(SRCDIR)/gpmconvert.c $(INCDIR)/gpmconvert.h
 	$(CC) -o gpmconvert.o -c $(SRCDIR)/gpmconvert.c $(CFLAGS)
+
+loop.o: $(SRCDIR)/loop.c $(INCDIR)/loop.h
+	$(CC) -o loop.o -c $(SRCDIR)/loop.c $(CFLAGS)
+
+cursor.o: $(SRCDIR)/cursor.c $(INCDIR)/cursor.h
+	$(CC) -o cursor.o -c $(SRCDIR)/cursor.c $(CFLAGS)
+
+gpmloop.o: $(SRCDIR)/gpmloop.c $(INCDIR)/gpmloop.h
+	$(CC) -o gpmloop.o -c $(SRCDIR)/gpmloop.c $(CFLAGS)
 
 clean:
 	rm *.o *.a $(TARGET) $(TARGETLIB)

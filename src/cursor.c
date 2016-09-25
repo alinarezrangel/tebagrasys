@@ -16,8 +16,9 @@ tebagrasys_cursor_t* tebagrasys_cursor_new(const char* bs)
 	cursor->byteSec =
 		tebagrasys_malloc(sizeof(char) * (bsl + 1));
 	cursor->byteSecLength = bsl + 1;
-	strcpy(cursor->byteSec, bs);
-	cursor->position = {0, 0};
+	strncpy(cursor->byteSec, bs, bsl);
+	cursor->byteSec[bsl] = '\0';
+	cursor->position = (tebagrasys_geometry_point_t){0, 0};
 	return cursor;
 }
 

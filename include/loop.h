@@ -4,8 +4,8 @@
 **********************
 ********************************************** */
 
-#if !defined(__TEBAGRASYS_LIB_H__)
-#define __TEBAGRASYS_LIB_H__ 1
+#if !defined(__TEBAGRASYS_LIB_LOOP_H__)
+#define __TEBAGRASYS_LIB_LOOP_H__ 1
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -76,4 +76,4 @@ tebagrasys_error_t tebagrasys_loop_on_click(
 
 TEBAGRASYS_DECLR_END
 
-#endif /* __TEBAGRASYS_LIB_H__ */
+#endif /* __TEBAGRASYS_LIB_LOOP_H__ */

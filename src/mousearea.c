@@ -86,42 +86,42 @@ int tebagrasys_mouse_area_controller(tebagrasys_mouse_event_t* e, void *dt)
 		{
 			if((!area->mouseIsIn) && (area->haveOnHover))
 			{
-				area->onHover(e);
+				(*area->onHover)(e);
 				area->mouseIsIn = TRUE;
 			}
 			switch(e->type)
 			{
 				case TEBAGRASYS_MOUSE_MOVE:
 					if(area->haveOnMove)
-						area->onMove(e);
+						(*area->onMove)(e);
 					break;
 				case TEBAGRASYS_MOUSE_DOWN:
           if(area->haveOnDown)
-            area->onDown(e);
+            (*area->onDown)(e);
           break;
 				case TEBAGRASYS_MOUSE_CLICK:
           if(area->haveOnClick)
-            area->onClick(e);
+            (*area->onClick)(e);
           break;
         case TEBAGRASYS_MOUSE_UP:
 					if(area->haveOnClick)
-						area->onClick(e);
+						(*area->onClick)(e);
           if(area->haveOnUp)
-            area->onUp(e);
+            (*area->onUp)(e);
           break;
 				case TEBAGRASYS_DRAGGING:
           if(area->haveOnDrag)
-            area->onDrag(e);
+            (*area->onDrag)(e);
           break;
 				case TEBAGRASYS_DRAG_END:
           if(area->haveOnDragOver)
-            area->onDragOver(e);
+            (*area->onDragOver)(e);
           break;
 			}
 		}
 		else if((area->mouseIsIn) && (area->haveOnLeave))
 		{
-			area->onLeave(e);
+			(*area->onLeave)(e);
 			area->mouseIsIn = FALSE;
 		}
 	}

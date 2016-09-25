@@ -5,14 +5,17 @@
 #include <gpm.h>
 
 #include "tebagrasys.h"
+/* #include "tbgpm.h" */
 #include "gpmconvert.h"
+#include "gpmloop.h"
 
+/*
 int lastX = 0;
 int lastY = 0;
 
 int MyMouseHandler(Gpm_Event* event, void* data)
 {
-	/* printf("Cursor event %d at (%d, %d)\r\n", event->type, event->x, event->y); */
+	printf("Cursor event %d at (%d, %d)\r\n", event->type, event->x, event->y);
 	tebagrasys_mouse_event_t* evt = tebagrasys_gpm_event_to_native_event(event);
 	char cursor = '^';
 	if(evt == NULL)
@@ -60,6 +63,7 @@ int MyMouseHandler(Gpm_Event* event, void* data)
 	tebagrasys_dealloc(evt);
 	return 0;
 }
+*/
 
 tebagrasys_error_t MyAreaOnClickHandler(tebagrasys_mouse_event_t* ev)
 {
@@ -81,8 +85,8 @@ tebagrasys_error_t MyAreaOnLeaveHandler(tebagrasys_mouse_event_t* ev)
 
 int main(int argc, char** argv)
 {
-	Gpm_Connect conn;
-	int c = 0;
+	/*Gpm_Connect conn;
+	int c = 0;*/
 	tebagrasys_mouse_area_t* area = tebagrasys_mouse_area_new(
 		tebagrasys_geometry_rectangle_new(
 			(tebagrasys_geometry_point_t){5, 5},
@@ -90,14 +94,29 @@ int main(int argc, char** argv)
 		),
 		tebagrasys_geometry_rectangle_have
 	);
+	if(area == NULL)
+	{
+		perror("Unable to create a new mousearea");
+		return EXIT_FAILURE;
+	}
+	tebagrasys_main_loop_t* loop = tebagrasys_main_loop_new(
+		tebagrasys_cursor_new("#"),
+		TEBAGRASYS_EXIT_ON_EOF
+	);
+	if(loop == NULL)
+	{
+		tebagrasys_mouse_area_dealloc(area);
+		perror("Unable to create a new loop");
+		return EXIT_FAILURE;
+	}
 
 	setlocale(LC_ALL, "");
-
+/*
 	conn.eventMask = ~0;
 	conn.defaultMask = 0;
 	conn.minMod = 0;
 	conn.maxMod = ~0;
-
+*/
 	tebagrasys_mouse_area_attach(
 		area,
 		TEBAGRASYS_EVENT_CLICK,
@@ -113,23 +132,29 @@ int main(int argc, char** argv)
 		TEBAGRASYS_EVENT_LEAVE,
 		MyAreaOnLeaveHandler
 	);
-
+/*
 	if(Gpm_Open(&conn, 0) < 0)
 	{
 		fprintf(stderr, "Error: cant connect to the mouse server\r\n");
 		return EXIT_FAILURE;
 	}
-
+*/
 	printf("\033[2J\033[?25l");
-
+/*
 	gpm_handler = MyMouseHandler;
 
 	while((c = Gpm_Getc(stdin)) != EOF)
 		printf("%c", c);
+*/
+	printf("Entering loop\r\n");
+	tebagrasys_main_loop_do_gpm(loop);
+	printf("Exiting loop\r\n");
 
+	tebagrasys_main_loop_dealloc(loop);
 	tebagrasys_mouse_area_dealloc(area);
+/*
 	Gpm_Close();
-
+*/
 	printf("\033[2J\033[;H\033[?25h");
 
 	return EXIT_SUCCESS;

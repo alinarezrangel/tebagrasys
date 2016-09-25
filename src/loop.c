@@ -36,5 +36,6 @@ tebagrasys_error_t tebagrasys_loop_on_click(
 )
 {
 	tebagrasys_mouse_area_controller(event, NULL);
+	return EXIT_SUCCESS;
 }
 
